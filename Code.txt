@@ -1,0 +1,107 @@
+import java.util.*;
+public class DataStructure_Project {
+	
+	public static void main(String[] args) {
+		int n =10;
+		int[] ascArr=new int[n];
+		for(int i=0;i<n;i++){
+			ascArr[i]=i;
+		}
+		int[] desArr=new int[n];
+		for(int i=n-1;i>=0;i--){
+			desArr[n-i-1]=i;
+		}
+		int[] randArr=new int[n];
+		Random random=new Random();
+		for(int i=0;i<n;i++){
+			int rand=random.nextInt(100);
+			randArr[i]=rand;
+		}
+		System.out.println("before sorting");
+		print(randArr,n);
+		System.out.println("after sorting");
+		Bubblesort(randArr);
+		print(randArr,n);
+		
+		
+		
+		
+		
+	}
+	
+	public static void print(int[] a,int n){
+		for(int i=0;i<n;i++){
+			System.out.print(a[i]+" ");
+		}
+		System.out.println();
+	}
+	
+	public static void Bubblesort(int[]x) {
+boolean sorted=true;
+do {
+	sorted=true;
+	for(int i=0;i<x.length-1;i++) {
+		if(x[i]>x[i+1]) {
+			int temp=x[i];
+			x[i]=x[i+1];
+			x[i+1]=temp;
+			sorted=false;
+		}
+	}
+}while(!sorted);
+		
+	}
+	
+	public static void mergesort(int []a){
+		if(a.length<2){
+			return;
+		}
+		//divide the array
+		int middle=a.length/2;
+		int []left=new int [middle];
+		for(int i=0;i<middle;i++){
+			left[i]=a[i];
+		}
+		int []right=new int [a.length-middle];
+		for(int i=0;i<a.length-middle;i++){
+			right[i]=a[middle+i];
+		}
+		//sort each half
+		mergesort(left);
+		mergesort(right);
+		
+		merge(left,right,a);
+		
+		
+		
+	}
+	
+	
+	public static void merge(int[]left,int[]right,int[]result){
+		int i=0;
+		int j=0;
+		int k=0;
+		while(i<left.length&& j<right.length){
+			if(left[i]<=right[j]){
+				result[k]=left[i];
+				k++;
+				i++;
+			}else{
+				result[k]=right[j];
+				k++;
+				j++;
+				
+			}
+		}
+		while(i<left.length){
+			result[k]=left[i];
+			k++;
+			i++;
+		}
+		while(j<right.length){
+			result[k]=right[j];
+			k++;
+			j++;
+		}
+	}
+}
